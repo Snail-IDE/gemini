@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Renderer</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+    <h1>Markdown Renderer</h1>
+
+    <script>
+        // Function to get the value of a query parameter from the URL
+        function getQueryParam(parameter) {
+            var urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(parameter);
+        }
+
+        // Function to render Markdown
+        function renderMarkdown() {
+            // Get the Markdown content from the search parameter named 'markdown'
+            var markdownContent = getQueryParam('markdown');
+
+            // If Markdown content is found, render it
+            if (markdownContent) {
+                // Render Markdown using marked.js
+                var htmlOutput = marked(markdownContent);
+
+                // Display the rendered Markdown
+                document.body.innerHTML += '<div>' + htmlOutput + '</div>';
+            } else {
+                // Display a message if no Markdown content is found
+                document.body.innerHTML += '<div>No Markdown content found.</div>';
+            }
+        }
+
+        // Call the renderMarkdown function when the page loads
+        window.onload = renderMarkdown;
+    </script>
+
+</body>
+</html>
